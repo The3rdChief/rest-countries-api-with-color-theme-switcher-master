@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-elements: 0deg 0% 100%;
+    --color-text: 200deg 15% 8%;
+    --color-bg: 0deg 0% 98%;
+    --color-input: 0deg 0% 52%;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-elements: 209deg 23% 22%;
+      --color-text: 0deg 0% 100%;
+      --color-bg: 207deg 26% 17%;
+      --color-input: 0deg 0% 52%;
+    }
+  }
+
+  html.lite {
+    --color-elements: 0deg 0% 100%;
+    --color-text: 200deg 15% 8%;
+    --color-bg: 0deg 0% 98%;
+    --color-input: 0deg 0% 52%;
+  }
+
+  html.dark {
+    --color-elements: 209deg 23% 22%;
+    --color-text: 0deg 0% 100%;
+    --color-bg: 207deg 26% 17%;
+    --color-input: 0deg 0% 52%;
+  }
+}
