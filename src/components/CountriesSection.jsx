@@ -11,6 +11,7 @@ const CountriesSection = () => {
 
   const [isFiltered, setIsFiltered] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const selectRef = useRef(null);
 
@@ -18,12 +19,20 @@ const CountriesSection = () => {
 
   useEffect(() => {
     const fetchCountries = async () => {
-      const response = await fetch(url);
-      const data = await response.json();
-      setCountries(data);
-      setIsLoading(false);
-
-      setRegions(new Set(data.map((res) => res.region)));
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error("Failed to fetch countries");
+        }
+        const data = await response.json();
+        setCountries(data);
+        setRegions(new Set(data.map((res) => res.region)));
+      } catch (error) {
+        console.error("Error fetching countries:", error);
+        setError(error.message);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     fetchCountries();
@@ -130,6 +139,7 @@ const CountriesSection = () => {
               </svg>
             </div>
           )}
+          {error && <p>{error}</p>}
           {!isFiltered &&
             countries?.map((country, index) => {
               return (
