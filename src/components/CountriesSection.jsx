@@ -139,7 +139,11 @@ const CountriesSection = () => {
               </svg>
             </div>
           )}
-          {error && <p>{error}</p>}
+          {error && (
+            <p className="text-center text-red-600">
+              OOPS! Something went wrong
+            </p>
+          )}
           {!isFiltered &&
             countries?.map((country, index) => {
               return (
